@@ -1,2 +1,2 @@
 # NGCockpit
-Hello World for Angular5 with Spring Boot REST
+A little Hello World for Angular5 with Spring Boot REST
