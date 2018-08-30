@@ -1,0 +1,46 @@
+<p>
+  cockpit-edit works!
+</p>
+<mat-card>
+  <div *ngIf="cockpit">
+    <mat-card-header>
+      <div>
+        <h2 style="margin-bottom: 0;">{{ cockpit.name }}</h2>
+        <h6 style="margin-top: 0;">id: {{cockpit.guid}}</h6>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <!--
+      <mat-form-field>
+          <input matInput placeholder="Input">
+      </mat-form-field>
+      -->
+      <form (ngSubmit)="save()" #cockpitForm="ngForm">
+        <div class="form-group">
+            <mat-form-field>
+          <!--<label for="name">Name</label>-->
+          <input matInput type="text" [(ngModel)]="cockpit.name" placeholder="Name" name="name" id="name" #name="ngModel"
+            required>
+          </mat-form-field>
+        </div>
+        <div [hidden]="name.valid || name.pristine" class="mat-form-field-invalid">Name is required</div>
+        <ul style="list-style-type: none;">
+          <li><label for="address">Adresse</label>
+            <input [(ngModel)]="cockpit.decoderAddress" placeholder="Adresse" name="address" id="address">
+          </li>
+          <div *ngIf="cockpit.speedSteps">
+            <li><label for="speed">Speed</label>
+              <input [(ngModel)]="cockpit.currentSpeedStep" placeholder="speed" name="speed" id="speed"> of {{cockpit.speedSteps.length}}
+            </li>
+            <li *ngFor="let speed of cockpit.speedSteps; let i = index">
+              <label for="Speed-{{i}}">Speed {{i}}</label>
+              <input [(ngModel)]="cockpit.speedSteps[i]" placeholder="{{i}}" name="Speed-{{i}}" id="Speed-{{i}}">
+            </li>
+          </div>
+        </ul>
+        <button mat-fab color="primary" type="submit" [disabled]="!cockpitForm.form.valid">{{"Save" | uppercase}}</button>
+      </form>
+    </mat-card-content>
+    <!-- <button mat-fab color="primary" (click)="save()">{{"Save" | uppercase}}</button> -->
+  </div>
+</mat-card>

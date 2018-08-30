@@ -1,0 +1,42 @@
+<!-- 
+<ol>
+	<li *ngFor="let cockpit of cockpitList">
+		<ul style="list-style-type:none">
+			<li>Name = {{cockpit.name}}</li>
+			<li>Address = {{cockpit.decoderAddress}}</li>
+			<li>Speed = {{cockpit.currentSpeedStep}} of {{cockpit.speedSteps}}</li>
+		</ul>
+	</li>
+</ol>
+ -->
+ 
+<mat-card>
+  <mat-card-header><h2>Cockpit Overview</h2></mat-card-header>
+  <mat-card-content>
+    <mat-list >
+      <mat-list-item *ngFor="let cockpit of cockpitList" [class.mat-list-option]="true" [class.mat-list-item-focus]="cockpit === selectedCockpit" (click)="onSelect(cockpit)">
+				<h3  matLine [class.cockpit-header]="true" >{{cockpit.name}}</h3>
+				<p matLine >Address: {{cockpit.decoderAddress}}</p>
+			  <p matLine>Speed: {{cockpit.currentSpeedStep}} of {{cockpit.speedSteps}}</p>
+				<!--
+					<a mat-line  [routerLink]="['/cockpit-edit', cockpit.guid]">Edit {{cockpit.name}}</a>
+					<button mat-mini-fab color="accent" [routerLink]="['/cockpit-edit', cockpit.guid]">{{ "Edit" | uppercase}}</button>
+				- ->
+				<ul >
+					<li mat-line >{{cockpit.name}}</li>
+					<li mat-line>Address = {{cockpit.decoderAddress}}</li>
+					<!-- 
+					<li mat-line >Address = {{cockpit.decoderAddress}}</li>
+					<li mat-line >Speed = {{cockpit.currentSpeedStep}} of {{cockpit.speedSteps}}</li>
+					<li mat-line *ngFor="let speed of cockpit.speedSteps; let i = index">Speed {{i}} = {{speed}}</li>
+				</ul>
+					-->
+			  <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+      </mat-list-item>
+    </mat-list>
+	</mat-card-content>
+	
+	<button mat-fab color="accent" [routerLink]="['/cockpit-add']">{{"Add" | uppercase}}</button>
+</mat-card>
+<mat-divider></mat-divider>
+<app-cockpit-detail [cockpit]="selectedCockpit"></app-cockpit-detail>

@@ -1,0 +1,29 @@
+/*
+	Use 
+  		@import '~sass/mixins';
+   	to use this mix-ins in your component.scss
+*/
+
+@import '~@angular/material/theming';
+
+// Define a custom mixin that takes in the current theme
+// @include theme-color-grabber($theme)
+@mixin theme-color-grabber($theme) {
+  // Parse the theme and create variables for each color in the palette
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+ 
+  // Create theme-derived styles
+  /*
+  .primaryColorBG {
+    background-color: mat-color($primary);
+  }
+  .accentColorBG {
+    background-color: mat-color($accent);
+  }
+  .warnColorBG {
+    background-color: mat-color($warn);
+  }
+  */
+}
